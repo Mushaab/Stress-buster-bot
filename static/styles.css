@@ -1,0 +1,94 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: rgba(0, 0, 0, 0.75); /* Black transparent background for the whole page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white; /* White text color for all text */
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slight transparency for the chat container */
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    color: white; /* Text color set to white for contrast */
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+.chat-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chat-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.chat-content {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slight transparency for message area */
+}
+
+.chat-content p {
+    margin: 10px 0;
+}
+
+.user-message {
+    text-align: right;
+    color: #ffffff; /* White text color for user messages */
+}
+
+.bot-message {
+    text-align: left;
+    color: #ffffff; /* White text color for bot messages */
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+}
+
+.chat-input input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slight transparency for input */
+    color: white; /* White text color for input */
+}
+
+.chat-input input[type="text"]::placeholder {
+    color: #cccccc; /* Lighter color for placeholder text */
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}
