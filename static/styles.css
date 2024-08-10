@@ -7,6 +7,19 @@ body {
     height: 100vh;
     margin: 0;
     color: white; /* White text color for all text */
+    position: relative; /* Relative position to allow absolute positioning of the curve */
+}
+
+body:before {
+    content: "";
+    position: absolute;
+    top: 0; /* Positioned at the top */
+    left: 0;
+    width: 100%;
+    height: 50px; /* Adjust the height for the curve */
+    background: none;
+    border-bottom: 2px solid white; /* Thin white line */
+    border-radius: 50% 50% 0 0; /* Curved effect */
 }
 
 .chat-container {
@@ -95,12 +108,12 @@ body {
     transform: translateY(-2px);
 }
 
-.chat-input button:active {
+chat-input button:active {
     background-color: #003f7f;
     transform: translateY(1px);
 }
 
-.chat-input button:focus {
+chat-input button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
