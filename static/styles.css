@@ -87,8 +87,47 @@ body {
     color: white;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .chat-input button:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.chat-input button:active {
+    background-color: #003f7f;
+    transform: translateY(1px);
+}
+
+.chat-input button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.chat-btn {
+    margin: 5px 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #28a745; /* Green background for refresh and delete buttons */
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.chat-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.chat-btn:active {
+    background-color: #1e7e34;
+    transform: translateY(1px);
+}
+
+.chat-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }

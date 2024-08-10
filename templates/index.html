@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stress Buster Chatbot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <div class="chat-container">
         <div class="chat-box">
             <div class="chat-header">
                 <h2>I'm here to relieve your stress</h2>
+                <button id="refresh-btn" class="chat-btn">Refresh</button>
+                <button id="delete-btn" class="chat-btn">Delete Chat</button>
             </div>
-            <div id="chat-content" class="chat-content">
-                <!-- Chat messages will be inserted here -->
+            <div class="chat-content" id="chat-content">
+                <!-- Initial Bot Message -->
+                <p class="bot-message">Bot: Hello! I'm here to help you relieve stress. How can I assist you today?</p>
             </div>
             <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Type your message..." onkeypress="return event.keyCode != 13;">
+                <input type="text" id="user-input" placeholder="Type your message...">
                 <button onclick="sendMessage()">Send</button>
             </div>
         </div>
@@ -25,25 +28,41 @@
     <script>
         function sendMessage() {
             const userInput = document.getElementById('user-input').value;
-            if (userInput.trim() === '') return;
+            if (userInput.trim() !== '') {
+                // Display user message
+                const userMessage = `<p class="user-message">You: ${userInput}</p>`;
+                document.getElementById('chat-content').innerHTML += userMessage;
+                
+                // Send user message to the backend
+                fetch('/get', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ msg: userInput }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const botMessage = `<p class="bot-message">Bot: ${data}</p>`;
+                    document.getElementById('chat-content').innerHTML += botMessage;
+                });
 
-            const chatContent = document.getElementById('chat-content');
-            chatContent.innerHTML += `<p class="user-message"><strong>You:</strong> ${userInput}</p>`;
-
-            fetch('/get', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ msg: userInput })
-            })
-            .then(response => response.json())
-            .then(data => {
-                chatContent.innerHTML += `<p class="bot-message"><strong>Bot:</strong> ${data}</p>`;
+                // Clear the input field
                 document.getElementById('user-input').value = '';
-                chatContent.scrollTop = chatContent.scrollHeight;
-            });
+            }
         }
+
+        // Function to refresh the page
+        document.getElementById('refresh-btn').onclick = function() {
+            location.reload();
+        };
+
+        // Function to delete the chat
+        document.getElementById('delete-btn').onclick = function() {
+            document.getElementById('chat-content').innerHTML = '';
+            const initialMessage = `<p class="bot-message">Bot: Hello! I'm here to help you relieve stress. How can I assist you today?</p>`;
+            document.getElementById('chat-content').innerHTML += initialMessage;
+        };
     </script>
 </body>
 </html>
